@@ -1,0 +1,38 @@
+[
+  {
+    "categoria": "eletronico",
+    "nome": "Smartphone Modelo Y",
+    "preco": 3250.00,
+    "descricao": "O mais novo smartphone com tela OLED e 5G.",
+    "imageUrl": "https://a-static.mlcdn.com.br/1500x1500/smartphone-12-256gb-8gb-ram-dual-sim-tela-6-79-azul/euromix/c6ff2ffc7a1a11ef88014201ac18501b/85d2d80f0dd4fe5fa153ea40bd78d861.jpeg",
+    "marca": "TechMarca",
+    "garantiaMeses": 24
+  },
+  {
+    "categoria": "roupa",
+    "nome": "Jaqueta Jeans",
+    "preco": 249.90,
+    "descricao": "Jaqueta jeans com forro interno, ideal para o inverno.",
+    "imageUrl": "https://acdn-us.mitiendanube.com/stores/002/822/533/products/1_preta-0755e2520fcde918b516780560897023-1024-1024.jpg",
+    "tamanho": "G",
+    "cor": "Azul Escuro"
+  },
+  {
+    "categoria": "alimento",
+    "nome": "Chocolate Amargo 70%",
+    "preco": 12.00,
+    "descricao": "Chocolate com alto teor de cacau e benefícios para a saúde.",
+    "imageUrl": "https://www.sondadelivery.com.br/img.aspx/sku/1000047496/530/7622210529985-1-.jpg",
+    "dataValidade": "01/05/2026",
+    "calorias": 550
+  },
+  {
+    "categoria": "eletronico",
+    "nome": "Fone Bluetooth TWS",
+    "preco": 399.00,
+    "descricao": "Fone de ouvido sem fio com cancelamento de ruído.",
+    "imageUrl": "https://edifier.com.br/pub/media/catalog/product/cache/f1731b22860b0086fc34e14d5ee03543/f/o/fone_tws_earbuds_preto_3.jpg",
+    "marca": "AudioMax",
+    "garantiaMeses": 6
+  }
+]
