@@ -1,7 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 import 'dart:convert';
 
 import 'models/produto_model.dart';
@@ -10,6 +13,8 @@ import 'widgets/eletronico_widget.dart';
 import 'widgets/roupa_widget.dart';
 import 'widgets/alimento_widget.dart';
 import 'screens/detalhe_produto_screen.dart';
+
+import 'screens/cadastro_produtos_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,13 +62,46 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
     _carregarProdutos();
   }
 
-  Future<void> _carregarProdutos() async {
-    final String response = await rootBundle.loadString('assets/produtos.json');
-    final data = await json.decode(response) as List;
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
 
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/produtos.json');
+  }
+
+  Future<void> _escreverJson(List<dynamic> jsonList) async {
+    final file = await _localFile;
+    final jsonString = jsonEncode(jsonList);
+    await file.writeAsString(jsonString);
+  }
+
+  Future<List<dynamic>> _lerJson() async {
+    try {
+      final file = await _localFile;
+      if (!await file.exists()) {
+        final jsonString = await rootBundle.loadString('assets/produtos.json');
+        await file.writeAsString(jsonString);
+      }
+
+      final contents = await file.readAsString();
+      return jsonDecode(contents) as List;
+    } catch (e) {
+      print("Erro ao ler JSON: $e");
+      return [];
+    }
+  }
+
+  Future<void> _carregarProdutos() async {
+    setState(() {
+      _isLoading = true;
+    });
+    final data = await _lerJson();
     setState(() {
       _todosProdutos = data.map((json) => Produto.fromJson(json)).toList();
-      _produtosFiltrados = _todosProdutos;
+      _filtrarProdutos(_categoriaSelecionada);
       _isLoading = false;
     });
   }
@@ -82,6 +120,21 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
         }).toList();
       }
     });
+  }
+
+  Future<void> _adicionarProduto(Map<String, dynamic> novoProduto) async {
+    final data = await _lerJson();
+    data.add(novoProduto);
+    await _escreverJson(data);
+    await _carregarProdutos();
+  }
+
+  void _navegarParaCadastro() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => CadastroProdutoScreen(onSave: _adicionarProduto),
+      ),
+    );
   }
 
   ProdutoWidget _construirWidgetProduto(Produto produto) {
@@ -185,9 +238,7 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
         ],
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: () {
-          print("apertou");
-        },
+        onPressed: _navegarParaCadastro,
 
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color.fromARGB(255, 10, 159, 246),
