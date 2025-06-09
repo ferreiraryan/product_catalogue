@@ -184,6 +184,26 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
           ),
         ],
       ),
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          print("apertou");
+        },
+
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color.fromARGB(255, 10, 159, 246),
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
+
+        child: const Text(
+          "Cadastrar Produtos",
+          softWrap: false,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
     );
   }
 }
