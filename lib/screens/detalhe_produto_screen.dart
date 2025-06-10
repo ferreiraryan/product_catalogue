@@ -113,7 +113,7 @@ class DetalheProdutoScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: _removerProduto,
+        onPressed: () => {},
 
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color.fromARGB(255, 246, 10, 10),
