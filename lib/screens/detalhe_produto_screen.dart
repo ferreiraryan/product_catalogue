@@ -1,19 +1,64 @@
+import 'dart:io';
+
+import '../widgets/produto_widget.dart';
 import 'package:flutter/material.dart';
-import '../widgets/produto_widget.dart'; // Importa a classe base do WIDGET
+import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:convert';
 
 class DetalheProdutoScreen extends StatelessWidget {
   // A tela de detalhes recebe o WIDGET já construído.
-  // Isso a mantém simples, sem precisar saber sobre os modelos de dados.
   final ProdutoWidget produto;
 
   const DetalheProdutoScreen({super.key, required this.produto});
+
+  //   GERA AS VARIAVEIS DE ARMAZENAMENTO DE DADOS
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/produtos.json');
+  }
+
+  Future<void> _escreverJson(List<dynamic> jsonList) async {
+    final file = await _localFile;
+    final jsonString = jsonEncode(jsonList);
+    await file.writeAsString(jsonString);
+  }
+
+  Future<List<dynamic>> _lerJson() async {
+    try {
+      final file = await _localFile;
+
+      //Feito apenas para popular de dados, so descomente se quiser reescrever
+      //pelos dados no json
+
+      // final jsonString = await rootBundle.loadString('assets/produtos.json');
+      // await file.writeAsString(jsonString);
+
+      final contents = await file.readAsString();
+      return jsonDecode(contents) as List;
+    } catch (e) {
+      print("Erro ao ler JSON: $e");
+      return [];
+    }
+  }
+
+  Future<void> _removerProduto(Map<String, dynamic> Produto) async {
+    final data = await _lerJson();
+    data.remove(Produto);
+    await _escreverJson(data);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(produto.nome)),
       body: SingleChildScrollView(
-        // Permite rolagem se o conteúdo for grande
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -53,7 +98,6 @@ class DetalheProdutoScreen extends StatelessWidget {
               if (produto is Card) ...[
                 (produto as Card).child ?? const SizedBox(),
               ] else ...[
-                // Se não for um Card, tenta mostrar a descrição
                 Text(
                   'Descrição',
                   style: Theme.of(context).textTheme.titleLarge,
@@ -66,6 +110,24 @@ class DetalheProdutoScreen extends StatelessWidget {
               ],
             ],
           ),
+        ),
+      ),
+      floatingActionButton: ElevatedButton(
+        onPressed: _removerProduto,
+
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color.fromARGB(255, 246, 10, 10),
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
+
+        child: const Text(
+          "Remover Produto",
+          softWrap: false,
+          overflow: TextOverflow.ellipsis,
         ),
       ),
     );

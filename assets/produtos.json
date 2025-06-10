@@ -31,8 +31,62 @@
     "nome": "Fone Bluetooth TWS",
     "preco": 399.00,
     "descricao": "Fone de ouvido sem fio com cancelamento de ruído.",
-    "imageUrl": "https://edifier.com.br/pub/media/catalog/product/cache/f1731b22860b0086fc34e14d5ee03543/f/o/fone_tws_earbuds_preto_3.jpg",
+    "imageUrl": "https://a-static.mlcdn.com.br/1500x1500/smartphone-12-256gb-8gb-ram-dual-sim-tela-6-79-azul/euromix/c6ff2ffc7a1a11ef88014201ac18501b/85d2d80f0dd4fe5fa153ea40bd78d861.jpeg",
     "marca": "AudioMax",
     "garantiaMeses": 6
+  },
+  {
+    "categoria": "roupa",
+    "nome": "Calça Moletom",
+    "preco": 159.90,
+    "descricao": "Calça de moletom confortável para o dia a dia.",
+    "imageUrl": "https://acdn-us.mitiendanube.com/stores/002/822/533/products/1_preta-0755e2520fcde918b516780560897023-1024-1024.jpg",
+    "tamanho": "M",
+    "cor": "Cinza"
+  },
+  {
+    "categoria": "alimento",
+    "nome": "Iogurte Grego",
+    "preco": 8.50,
+    "descricao": "Iogurte Grego com mel e castanhas, rico em proteínas.",
+    "imageUrl": "https://www.sondadelivery.com.br/img.aspx/sku/1000047496/530/7622210529985-1-.jpg",
+    "dataValidade": "15/12/2025",
+    "calorias": 180
+  },
+  {
+    "categoria": "eletronico",
+    "nome": "Notebook Gamer Pro",
+    "preco": 7899.90,
+    "descricao": "Notebook com placa de vídeo dedicada e tela de 144Hz.",
+    "imageUrl": "https://a-static.mlcdn.com.br/1500x1500/smartphone-12-256gb-8gb-ram-dual-sim-tela-6-79-azul/euromix/c6ff2ffc7a1a11ef88014201ac18501b/85d2d80f0dd4fe5fa153ea40bd78d861.jpeg",
+    "marca": "GamerForce",
+    "garantiaMeses": 12
+  },
+  {
+    "categoria": "roupa",
+    "nome": "Camisa Social Branca",
+    "preco": 199.00,
+    "descricao": "Camisa social de algodão egípcio, não amassa.",
+    "imageUrl": "https://acdn-us.mitiendanube.com/stores/002/822/533/products/1_preta-0755e2520fcde918b516780560897023-1024-1024.jpg",
+    "tamanho": "P",
+    "cor": "Branca"
+  },
+  {
+    "categoria": "alimento",
+    "nome": "Pão Integral 12 Grãos",
+    "preco": 15.00,
+    "descricao": "Pão de forma integral com sementes de girassol e linhaça.",
+    "imageUrl": "https://www.sondadelivery.com.br/img.aspx/sku/1000047496/530/7622210529985-1-.jpg",
+    "dataValidade": "30/11/2025",
+    "calorias": 90
+  },
+  {
+    "categoria": "eletronico",
+    "nome": "Smartwatch Fit+",
+    "preco": 1250.00,
+    "descricao": "Relógio inteligente com monitoramento cardíaco e GPS.",
+    "imageUrl": "https://a-static.mlcdn.com.br/1500x1500/smartphone-12-256gb-8gb-ram-dual-sim-tela-6-79-azul/euromix/c6ff2ffc7a1a11ef88014201ac18501b/85d2d80f0dd4fe5fa153ea40bd78d861.jpeg",
+    "marca": "ConnectFit",
+    "garantiaMeses": 18
   }
 ]

@@ -38,11 +38,14 @@ class MyApp extends StatelessWidget {
           secondaryLabelStyle: const TextStyle(color: Colors.white),
         ),
       ),
+
+      // CHAMA A OS WIDGETS DE PRODUTOS
       home: const CatalogoScreen(),
     );
   }
 }
 
+// CRIA A TELA PRINCIPAL
 class CatalogoScreen extends StatefulWidget {
   const CatalogoScreen({super.key});
 
@@ -50,6 +53,7 @@ class CatalogoScreen extends StatefulWidget {
   _CatalogoScreenState createState() => _CatalogoScreenState();
 }
 
+// CONTROI A TELA PRINCIPAL E PREENCHE COM OS PRODUTOS
 class _CatalogoScreenState extends State<CatalogoScreen> {
   List<Produto> _todosProdutos = [];
   List<Produto> _produtosFiltrados = [];
@@ -61,6 +65,8 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
     super.initState();
     _carregarProdutos();
   }
+
+  //   GERA AS VARIAVEIS DE ARMAZENAMENTO DE DADOS
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -81,10 +87,12 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
   Future<List<dynamic>> _lerJson() async {
     try {
       final file = await _localFile;
-      if (!await file.exists()) {
-        final jsonString = await rootBundle.loadString('assets/produtos.json');
-        await file.writeAsString(jsonString);
-      }
+
+      //Feito apenas para popular de dados, so descomente se quiser reescrever
+      //pelos dados no json
+
+      // final jsonString = await rootBundle.loadString('assets/produtos.json');
+      // await file.writeAsString(jsonString);
 
       final contents = await file.readAsString();
       return jsonDecode(contents) as List;
@@ -100,6 +108,8 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
     });
     final data = await _lerJson();
     setState(() {
+      // A CHAMADA .fromJson É RESPONÁVEL POR INSTANCIAR OS PRODUTOS DO JSON PARA
+      // SUAS RESPECTIVAS CLASSES E ADICINA AS CLASSES À UMA LISTA
       _todosProdutos = data.map((json) => Produto.fromJson(json)).toList();
       _filtrarProdutos(_categoriaSelecionada);
       _isLoading = false;
@@ -222,6 +232,7 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
                 : GridView.builder(
                     padding: const EdgeInsets.all(10.0),
                     itemCount: _produtosFiltrados.length,
+                    // PEGA OS ITENS DA LISTA E TRANSFORMA EM WIDGETS
                     itemBuilder: (context, index) {
                       final produto = _produtosFiltrados[index];
                       return _construirWidgetProduto(produto);
