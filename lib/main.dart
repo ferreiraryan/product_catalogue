@@ -3,7 +3,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:convert';
 
@@ -139,6 +138,13 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
     await _carregarProdutos();
   }
 
+  Future<void> _removerProduto(Map<String, dynamic> produtoRemover) async {
+    final data = await _lerJson();
+    data.remove(produtoRemover);
+    await _escreverJson(data);
+    await _carregarProdutos();
+  }
+
   void _navegarParaCadastro() {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -152,8 +158,10 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              DetalheProdutoScreen(produto: _construirWidgetProduto(produto)),
+          builder: (context) => DetalheProdutoScreen(
+            produto: _construirWidgetProduto(produto),
+            onRemove: _removerProduto,
+          ),
         ),
       );
     }

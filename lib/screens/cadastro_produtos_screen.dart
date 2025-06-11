@@ -30,7 +30,6 @@ class _CadastroProdutoScreenState extends State<CadastroProdutoScreen> {
     // Limpar os controladores para evitar vazamento de memória
     _nomeController.dispose();
     _precoController.dispose();
-    // ... descarte todos os outros controladores aqui
     super.dispose();
   }
 
@@ -41,7 +40,7 @@ class _CadastroProdutoScreenState extends State<CadastroProdutoScreen> {
         'nome': _nomeController.text,
         'preco': double.tryParse(_precoController.text) ?? 0.0,
         'descricao': _descricaoController.text,
-        'imageUrl': 'assets/images/placeholder.png', // Usando um placeholder
+        'imageUrl': '',
       };
 
       // Adiciona os campos específicos da categoria
