@@ -159,7 +159,8 @@ class _CatalogoScreenState extends State<CatalogoScreen> {
         context,
         MaterialPageRoute(
           builder: (context) => DetalheProdutoScreen(
-            produto: _construirWidgetProduto(produto),
+            produto: produto,
+            widgetProduto: _construirWidgetProduto(produto),
             onRemove: _removerProduto,
           ),
         ),

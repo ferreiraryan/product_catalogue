@@ -20,38 +20,6 @@ class DetalheProdutoScreen extends StatelessWidget {
     required this.produto,
   });
 
-  void _salvarProduto() {
-    final novoProduto = <String, dynamic>{
-      'categoria': produto,
-      'nome': _nomeController.text,
-      'preco': double.tryParse(_precoController.text) ?? 0.0,
-      'descricao': _descricaoController.text,
-      'imageUrl': '',
-    };
-    // if (_formKey.currentState!.validate()) {
-
-    //   // Adiciona os campos específicos da categoria
-    //   switch (_categoriaSelecionada) {
-    //     case 'eletronico':
-    //       novoProduto['marca'] = _marcaController.text;
-    //       novoProduto['garantiaMeses'] =
-    //           int.tryParse(_garantiaController.text) ?? 0;
-    //       break;
-    //     case 'roupa':
-    //       novoProduto['tamanho'] = _tamanhoController.text;
-    //       novoProduto['cor'] = _corController.text;
-    //       break;
-    //     case 'alimento':
-    //       novoProduto['dataValidade'] = _validadeController.text;
-    //       novoProduto['calorias'] = int.tryParse(_caloriasController.text) ?? 0;
-    //       break;
-    //   }
-
-    //   widget.onSave(novoProduto);
-    //   Navigator.of(context).pop();
-    // }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

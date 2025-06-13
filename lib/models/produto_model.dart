@@ -1,12 +1,10 @@
 abstract class Produto {
-  final String id;
   final String nome;
   final double preco;
   final String descricao;
   final String imageUrl;
 
   Produto({
-    required this.id,
     required this.nome,
     required this.preco,
     required this.descricao,
@@ -59,7 +57,6 @@ class Roupa extends Produto {
   final String cor;
 
   Roupa({
-    required super.id,
     required super.nome,
     required super.preco,
     required super.descricao,
